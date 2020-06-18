@@ -1,0 +1,25 @@
+2. Telnet to server, create n number of files. Zip, download and extract files.
+-> Commands
+//first install zip
+sudo apt-get install zip
+
+zip -r <filename.zip> <folder_to_zip>
+unzip <filename.zip>
+
+I have tried few possible methods for file transfer:
+1. ssh/sftp
+2. ftp client
+
+PHP code to telnet: (Not executed)
+$socket = fsockopen("localhost", "10011", $errno, $errstr); 
+
+if($socket) 
+{ 
+    echo "Connected <br /><br />"; 
+} 
+else 
+{ 
+    echo "Connection failed!<br /><br />"; 
+}  
+
+fclose($socket); 
