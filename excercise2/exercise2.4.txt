@@ -1,0 +1,43 @@
+Question 4 :
+
+A) Commands to observe or troubleshoot
+->
+1. vmstat -w will show you overeem (processes, swap, mem, cpu, io, system)
+
+2. pmstat -P ALL will provide you statistics (with %iowait) per cpu core
+
+3. iostat -x look for high %util or long await or big average queue size
+
+4. dig deeper with iotop
+
+5. ps -ax look for state D which is uninterruptible sleep (usually IO), run it one more time check if they are still in D state
+
+6. sar -b - overall io activities
+   sar -d - individual block device io activities
+
+B) Top Processes that are consuming more load on server :
+->
+Linux ( Sort by Memory ):
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
+
+htop command can also be used.
+
+
+C) Minimise the server load/ slow apache services
+->
+I Will check teh process and kill the process with sleeping state.
+
+ps -ef | grep sleep
+
+// will list all the process that are in sleep
+
+930936265 12237 90819   0  6:48PM ttys001    0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn sleep
+
+// Now kill those process
+kill -9 12237 
+
+Other tips to reduce server load :
+1. Optimize your images
+2. Compress your CSS
+3. Compress your data
+4. Host your images elsewhere

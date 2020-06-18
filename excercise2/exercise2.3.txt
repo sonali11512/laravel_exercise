@@ -1,0 +1,49 @@
+Question 3 : Auto restart apache server if in case there is too much load.
+->
+Command to resart the apache2:
+sudo service apache2 restart
+
+We can also write the cron job to check the server periodically and if there is too much load i.e between the given range then we can execute the below bash file to auto restart.
+I have not tried but maybe the below script will work.
+
+CRON JOB
+vi /var/spool/cron/root
+*/2 * * * * /bin/sh /root/apache-load-checker.sh > /dev/null 2>&1
+
+#You can set the Load limit as per your requirement
+HIGHLIMIT=20
+LOWLIMIT=5
+#########################################################
+#NO NEED TO EDIT ANYTHING BELOW HERE
+#########################################################
+loadavg=`uptime | awk ‘{print $9}’`
+if [ “$loadavg” = “average:” ]
+then
+echo “not this one…”
+loadavg=`uptime | awk ‘{print $10}’`
+fi
+#RESTARTCOMMAND=”/sbin/service httpd restart”
+#STOPCOMMAND=”/sbin/service httpd stop”
+RESTARTCOMMAND=”/scripts/restartsrv_httpd”
+STOPCOMMAND=”/sbin/service httpd stop”
+# bash doesn’t understand floating point
+# so convert the number to an interger
+thisloadavg=`echo $loadavg|awk -F \. ‘{print $1}’`
+if [ “$thisloadavg” -ge “$HIGHLIMIT” ]; then
+echo “Busy – Load Average $loadavg ($thisloadavg) ”
+#stop apache
+$STOPCOMMAND
+elif [ “$thisloadavg” -le “$LOWLIMIT” ]; then
+echo “Okay – Load Average $loadavg ($thisloadavg) ”
+pgrep httpd
+if [ $? -ne 0 ] # if apache not running
+then
+# restart apache
+$RESTARTCOMMAND
+echo “restart!”
+else
+echo “no restart!”
+fi
+else
+echo “waiting…!”
+fi

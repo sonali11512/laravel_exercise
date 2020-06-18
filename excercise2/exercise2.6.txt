@@ -1,0 +1,17 @@
+SQL Query to insert 10 new values into the routers table
+
+INSERT INTO routers
+(id,created_at,updated_at,sap_id,hostname,loopback,mac_address,type,deleted_at)
+VALUES
+(72, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 12222999, 'sonali.com', '192.168.2.2', '43:7F:23:3E:6C:12', 'CSS', NULL),
+(73, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1223244999, 'sone.com', '192.168.2.23', '43:7F:23:3E:6C:44', 'AG1', NULL),
+(74, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1222293499, 'agrawal.com', '192.168.2.2', '43:7F:23:3E:6C:33', 'CSS', NULL),
+(75, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 12299, 'sa.com', '192.168.2.23', '43:7F:23:3E:6C:45', 'AG1', NULL),
+(76, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 12243322999, 'sra.com', '192.168.2.2', '43:7F:23:3E:6C:17', 'CSS', NULL),
+(77, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 122324654999, 'soanaliagrawal.com', '192.168.2.23', '43:7F:23:3E:6C:46', 'AG1', NULL),
+(78, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1222296599, 'soneagrl.com', '192.168.2.2', '43:7F:23:3E:6C:18', 'CSS', NULL),
+(79, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 122324494499, 'agrawal.com', '192.168.2.23', '43:7F:23:3E:6C:64', 'AG1', NULL),
+(80, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 129, 'soone.com', '192.168.2.2', '43:7F:23:3E:6C:152', 'CSS', NULL),
+(81, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 16543244999, 'sonee.com', '192.168.2.23', '43:7F:23:3E:6C:454', 'AG1', NULL);
+
+I have used Faker library in laravel to create dummy records in application via code.

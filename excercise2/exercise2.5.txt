@@ -1,0 +1,13 @@
+Query to create a view & see all the routers having type CSS
+
+CREATE VIEW CSS_TYPE AS
+SELECT sap_id, hostname
+FROM routers
+WHERE type = 'CSS'
+
+Query to create a view & see all the routers having type AG1
+
+CREATE VIEW AG1_TYPE AS
+SELECT sap_id, hostname
+FROM routers
+WHERE type = ‘AG1’
